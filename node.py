@@ -37,7 +37,7 @@ class Node:
             return false
 
         for (i in range(numChildren)):
-            if (!children[i].recursiveEquals(otherNode.getChild(i))):
+            if (not children[i].recursiveEquals(otherNode.getChild(i))):
                 return false
 
         return true
