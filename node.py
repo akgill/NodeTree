@@ -16,6 +16,9 @@ class Node:
     def getValue(self):
         return self.value
 
+    def getChild(self, index):
+        return children[index];
+
     def getChildren(self):
         return self.children
 
@@ -23,7 +26,22 @@ class Node:
         return len(self.children)
 
     def recursiveEquals(self, otherNode):
-        pass
+        if (self.name != otherNode.getName()):
+            return false
+
+        if (self.value != otherNode.getValue()):
+            return false
+
+        numChildren = len(self.children)
+        if (numChildren != otherNode.getNumChildren()):
+            return false
+
+        for (i in range(numChildren)):
+            if (!children[i].recursiveEquals(otherNode.getChild(i))):
+                return false
+
+        return true
+
 
     def iterativeEquals(self, otherNode):
         pass
