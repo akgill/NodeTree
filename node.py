@@ -26,21 +26,14 @@ class Node:
         return len(self.children)
 
     def recursiveEquals(self, otherNode):
-        if (self.name != otherNode.getName()):
-            return false
+        if (not nodesCouldBeEqual(self, otherNode)):
+            return False
 
-        if (self.value != otherNode.getValue()):
-            return false
-
-        numChildren = len(self.children)
-        if (numChildren != otherNode.getNumChildren()):
-            return false
-
-        for (i in range(numChildren)):
+        for i in range(self.getNumChildren()):
             if (not children[i].recursiveEquals(otherNode.getChild(i))):
-                return false
+                return False
 
-        return true
+        return True
 
 
     def iterativeEquals(self, otherNode):
@@ -48,3 +41,16 @@ class Node:
 
     def __eq__(self, otherNode):
         return self.recursiveEquals(otherNode)
+
+
+def nodesCouldBeEqual(n1, n2):
+    if (n1.getName() != n2.getName()):
+        return False
+
+    if (n1.getValue() != n2.getValue()):
+        return False
+
+    if (n1.getNumChildren() != n2.getNumChildren()):
+        return False
+
+    return True
