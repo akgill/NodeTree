@@ -17,7 +17,7 @@ class Node:
         return self.value
 
     def getChild(self, index):
-        return children[index];
+        return self.children[index];
 
     def getChildren(self):
         return self.children
@@ -30,7 +30,7 @@ class Node:
             return False
 
         for i in range(self.getNumChildren()):
-            if (not children[i].recursiveEquals(otherNode.getChild(i))):
+            if (not self.children[i].recursiveEquals(otherNode.getChild(i))):
                 return False
 
         return True
