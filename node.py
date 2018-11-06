@@ -45,6 +45,23 @@ class Node:
 
         return True
 
+    def iterativeEquals2(self, otherNode):
+        if not nodesCouldBeEqual(self, otherNode):
+            return False
+
+        queue1 = self.children
+        queue2 = otherNode.children
+        while (len(queue1) > 0):
+            nodeA = queue1.pop()
+            nodeB = queue2.pop()
+            if not nodesCouldBeEqual(nodeA, nodeB):
+                return False
+
+            queue1.extend(nodeA.children)
+            queue2.extend(nodeB.children)
+
+        return True
+
     def __eq__(self, otherNode):
         return self.recursiveEquals(otherNode)
 

@@ -3,6 +3,7 @@ from node import Node
 def test(n1, n2, expected=""):
     print "expect: {expected}".format(expected=expected)
     print "iterative: ", n1.iterativeEquals(n2)
+    print "iterative: ", n1.iterativeEquals2(n2)
     print "recursive: ", n1.recursiveEquals(n2)
 
 
