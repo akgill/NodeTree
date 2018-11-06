@@ -10,44 +10,50 @@ class Node:
         return "Node(name={name}, value={value}, children={children})".format(
             name = self.name, value = self.value, children = self.children)
 
-    def getName(self):
-        return self.name
-
-    def getValue(self):
-        return self.value
-
-    def getChild(self, index):
-        return self.children[index];
-
-    def getChildren(self):
-        return self.children
-
     def getNumChildren(self):
         return len(self.children)
 
     def recursiveEquals(self, otherNode):
-        if (not nodesCouldBeEqual(self, otherNode)):
+        if not nodesCouldBeEqual(self, otherNode):
             return False
 
         for i in range(self.getNumChildren()):
-            if (not self.children[i].recursiveEquals(otherNode.getChild(i))):
+            if not self.children[i].recursiveEquals(otherNode.children[i]):
                 return False
 
         return True
 
 
     def iterativeEquals(self, otherNode):
-        pass
+        if not nodesCouldBeEqual(self, otherNode):
+            return False
+
+        queue1 = self.children
+        queue2 = otherNode.children
+        while (len(queue1) > 0):
+            new_queue1 = list()
+            new_queue2 = list()
+            for i in range(len(queue1)):
+                if not nodesCouldBeEqual(queue1[i], queue2[i]):
+                    return False
+
+                new_queue1.append(queue1.children)
+                new_queue2.append(queue2.children)
+
+            queue1 = new_queue1
+            queue2 = new_queue2
+
+        return True
 
     def __eq__(self, otherNode):
         return self.recursiveEquals(otherNode)
 
 
 def nodesCouldBeEqual(n1, n2):
-    if (n1.getName() != n2.getName()):
+    if (n1.name != n2.name):
         return False
 
-    if (n1.getValue() != n2.getValue()):
+    if (n1.value != n2.value):
         return False
 
     if (n1.getNumChildren() != n2.getNumChildren()):
