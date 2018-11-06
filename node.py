@@ -37,8 +37,8 @@ class Node:
                 if not nodesCouldBeEqual(queue1[i], queue2[i]):
                     return False
 
-                new_queue1.append(queue1.children)
-                new_queue2.append(queue2.children)
+                new_queue1.extend(queue1[i].children)
+                new_queue2.extend(queue2[i].children)
 
             queue1 = new_queue1
             queue2 = new_queue2
